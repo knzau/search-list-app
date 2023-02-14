@@ -1,10 +1,14 @@
 import { Tag } from "antd";
 
+export const findMatch = (pattern, entry, searchFilter) => {
+  if (searchFilter) {
+    return pattern.test(String(entry[searchFilter]));
+  }
+  return pattern.test(Object.values(entry).join(", "));
+ 
+}
+
 export const userFilterOptions = [
-	{
-		value: "all",
-		label: "All",
-	},
 	{
 		value: "email",
 		label: "Email",

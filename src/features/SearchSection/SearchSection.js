@@ -14,6 +14,7 @@ const SearchSection = ({ handleSearchUser, handleSelectUserFilter }) => {
 					onChange={handleSelectUserFilter}
 					options={userFilterOptions}
 					size="large"
+					allowClear={true}
 				/>
 			</div>
 			<div className="search-area_item">

@@ -4,7 +4,7 @@ import { userColumns } from "../../utils";
 const List = ({ data }) => {
 	return (
 		<div className="content-box">
-			<DataTable columns={userColumns} data={data} page={false} key="key" />
+			<DataTable columns={userColumns} data={data} key="key" />
 		</div>
 	);
 };

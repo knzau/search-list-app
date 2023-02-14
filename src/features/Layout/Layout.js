@@ -1,61 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import List from "../List/List";
 import SearchSection from "../SearchSection/SearchSection";
+import { userData } from "../mockData";
+import useFilterData from "../../hooks/useFilterData";
 
 import "./Layout.scss";
-import { userData } from "../mockData";
 
 const { Header, Sider } = Layout;
 
 const App = () => {
 	const [collapsed, setCollapsed] = useState(false);
-	const [data, setData] = useState(userData);
+
 	const [searchValue, setSearchValue] = useState("");
 	const [searchFilter, setSearchFilter] = useState("");
 
-	console.log({ searchFilter, searchValue, setSearchFilter, setSearchValue, setData });
-
 	const handleSearchUser = (value) => {
-		console.log(value);
 		setSearchValue(value);
 	};
 
-	const handleSelectUserFilter = (value) => {
-		console.log(value);
-		setSearchFilter(value);
-	};
+	const handleSelectUserFilter = useCallback(
+		(value) => {
+			setSearchFilter(value);
+		},
+		[setSearchFilter]
+	);
 
-	useEffect(() => {
-		if (!searchValue.length) {
-			return;
-		}
-
-		if (searchValue.length > 0) {
-			// const searchData = userData.filter((searchItem) => {
-			// 	// const lastIndex = userData.length - 1;
-			// 	// console.log(Object.values(searchItem).slice(1, lastIndex).includes("jo"));
-
-			// 	// Object.values(searchItem).slice(1, lastIndex).includes(`${searchValue.toLowerCase()}`);
-			// 	// console.log({ searchValue });
-			// 	// console.log(searchItem[searchFilter].toLowerCase().includes(searchValue));
-			// 	searchItem[searchFilter]?.toLowerCase().includes(searchValue.toLowerCase());
-			// });
-
-			if (searchFilter !== "all") {
-				const searchData = userData.filter((searchItem) =>
-					searchItem[searchFilter]?.toLowerCase().includes(searchValue.toLowerCase())
-				);
-				console.log({ searchData });
-				setData(searchData);
-			} else {
-				//todo: filter search by all
-			}
-		} else {
-			setData(userData);
-		}
-	}, [searchFilter, searchValue]);
+	const { filteredData } = useFilterData(searchFilter, searchValue, userData);
 
 	return (
 		<Layout className="layout-container">
@@ -89,7 +61,7 @@ const App = () => {
 					/>
 				</div>
 				<div className="app-content">
-					<List data={data} />
+					<List data={filteredData} />
 				</div>
 			</Layout>
 		</Layout>
