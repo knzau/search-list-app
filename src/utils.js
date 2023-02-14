@@ -1,12 +1,11 @@
 import { Tag } from "antd";
 
-export const findMatch = (pattern, entry, searchFilter) => {
-  if (searchFilter) {
-    return pattern.test(String(entry[searchFilter]));
-  }
-  return pattern.test(Object.values(entry).join(", "));
- 
-}
+export const findMatch = (pattern, entry = {}, searchFilter = "") => {
+	if (searchFilter) {
+		return pattern.test(String(entry[searchFilter]));
+	}
+	return pattern.test(Object.values(entry).join(", "));
+};
 
 export const userFilterOptions = [
 	{
@@ -22,15 +21,15 @@ export const userFilterOptions = [
 		label: "Last Name",
 	},
 	{
-		value: "primaryGroup",
-		label: "Primary Group",
+		value: "groups",
+		label: "Groups",
 	},
 	{
 		value: "phoneNumber",
 		label: "Phone Number",
 	},
 	{
-		value: "hours",
+		value: "hoursStudied",
 		label: "Hours Studied",
 	},
 ];
@@ -40,6 +39,7 @@ export const userColumns = [
 		title: "Email",
 		dataIndex: "email",
 		key: "email",
+		// eslint-disable-next-line jsx-a11y/anchor-is-valid
 		render: (text) => <a>{text}</a>,
 	},
 	{

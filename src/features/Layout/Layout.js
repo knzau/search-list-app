@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from "react";
-import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from "@ant-design/icons";
+import React, { useState } from "react";
+import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, CloudServerOutlined } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import List from "../List/List";
 import SearchSection from "../SearchSection/SearchSection";
-import { userData } from "../mockData";
+import { userData } from "../../mockData";
 import useFilterData from "../../hooks/useFilterData";
 
 import "./Layout.scss";
@@ -20,19 +20,19 @@ const App = () => {
 		setSearchValue(value);
 	};
 
-	const handleSelectUserFilter = useCallback(
-		(value) => {
-			setSearchFilter(value);
-		},
-		[setSearchFilter]
-	);
+	//callback when you click on the search-icon, the clear-icon or press the Enter key
+	const handleSelectUserFilter = (value) => {
+		setSearchFilter(value);
+	};
 
-	const { filteredData } = useFilterData(searchFilter, searchValue, userData);
+	const { filteredData, handleSearchChange } = useFilterData(searchFilter, searchValue, userData);
 
 	return (
 		<Layout className="layout-container">
 			<Sider trigger={null} collapsible collapsed={collapsed}>
-				<div className="logo">Users List app</div>
+				<div className="logo">
+					<CloudServerOutlined style={{ color: "white", fontSize: 24 }} /> <span>Rise Admin Panel</span>
+				</div>
 				<Menu
 					theme="dark"
 					mode="inline"
@@ -58,6 +58,7 @@ const App = () => {
 					<SearchSection
 						handleSearchUser={handleSearchUser}
 						handleSelectUserFilter={handleSelectUserFilter}
+						handleSearchChange={handleSearchChange}
 					/>
 				</div>
 				<div className="app-content">

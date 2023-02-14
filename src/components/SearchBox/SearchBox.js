@@ -2,7 +2,15 @@ import { Input } from "antd";
 import "./SearchBox.scss";
 
 const { Search } = Input;
-const SearchBox = ({ onSearch, placeholder = "", allowClear, enterButtonLabel = "", size, className = "" }) => {
+const SearchBox = ({
+	onSearch,
+	placeholder = "",
+	allowClear,
+	enterButtonLabel = "",
+	size,
+	className = "",
+	...rest
+}) => {
 	return (
 		<Search
 			placeholder={placeholder}
@@ -11,6 +19,7 @@ const SearchBox = ({ onSearch, placeholder = "", allowClear, enterButtonLabel = 
 			size={size}
 			onSearch={onSearch}
 			className={className}
+			{...rest}
 		/>
 	);
 };
