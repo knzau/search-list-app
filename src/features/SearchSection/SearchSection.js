@@ -4,7 +4,7 @@ import { userFilterOptions } from "../../utils";
 
 import "./SearchSection.scss";
 
-const SearchSection = ({ handleSearchUser, handleSelectUserFilter }) => {
+const SearchSection = ({ handleSearchUser, handleSelectUserFilter, handleSearchChange }) => {
 	return (
 		<div className="content-box search-area">
 			<div className="search-area_item">
@@ -21,6 +21,7 @@ const SearchSection = ({ handleSearchUser, handleSelectUserFilter }) => {
 				<label>What are you looking for?</label>
 				<SearchBox
 					onSearch={handleSearchUser}
+					onChange={handleSearchChange}
 					placeholder="Search for users"
 					allowClear={true}
 					enterButtonLabel="Search"
