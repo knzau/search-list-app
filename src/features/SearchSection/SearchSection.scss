@@ -1,0 +1,15 @@
+.search-area {
+	display: flex;
+}
+
+.search-area_item {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	justify-content: center;
+	margin-right: 8px;
+
+	label {
+		font-weight: 600;
+	}
+}

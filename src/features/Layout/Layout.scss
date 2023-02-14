@@ -1,0 +1,40 @@
+.layout-container {
+	min-height: calc(100vh - 20px);
+}
+.trigger {
+	padding: 0 24px;
+	font-size: 18px;
+	line-height: 64px;
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+.trigger:hover {
+	color: #1890ff;
+}
+
+.logo {
+	height: 48px;
+	margin: 16px;
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+.app-content {
+	display: flex;
+	flex-direction: column;
+	padding: 16px;
+}
+
+.breadcrumb-title {
+	font-size: 18px;
+	color: #242424;
+	transform: translateY(-2.5px);
+}
+
+.header-box {
+	padding: 0;
+	background: white !important;
+	display: flex;
+	align-items: center;
+	padding-inline: 0 !important;
+}
