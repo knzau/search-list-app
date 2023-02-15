@@ -7,6 +7,8 @@ export const findMatch = (pattern, entry = {}, searchFilter = "") => {
 	return pattern.test(Object.values(entry).join(", "));
 };
 
+export const capitalize = (str = "") => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+
 export const userFilterOptions = [
 	{
 		value: "email",
@@ -46,11 +48,13 @@ export const userColumns = [
 		title: "First Name",
 		dataIndex: "firstName",
 		key: "firstName",
+		render: (text) => capitalize(text),
 	},
 	{
 		title: "Last Name",
 		dataIndex: "lastName",
 		key: "lastName",
+		render: (text) => capitalize(text),
 	},
 	{
 		title: "Groups",
